@@ -110,7 +110,7 @@ namespace WpfApp1
         {
             if (isFinding)
                 return;
-            findButton.Content = "正在查找...";
+            findButton.Content = "Looking up...";
             findButton.IsEnabled = false;
             isFinding = true;
             
@@ -800,12 +800,12 @@ namespace WpfApp1
                 if (getMessage.Contains("ok"))
                 {
                     //Console.WriteLine("success");
-                    LogLabel.Content = selectIP + " 应用成功";
+                    LogLabel.Content = selectIP + " Succeed";
                 }
                 if (getMessage.Contains("fail"))
                 {
                     //Console.WriteLine("failed");
-                    LogLabel.Content = selectIP + " 应用失败";
+                    LogLabel.Content = selectIP + " Failed";
                 }
 
                 savaApplyButton.IsEnabled = true;
@@ -1166,7 +1166,7 @@ namespace WpfApp1
             //Console.WriteLine("!!~~654643563");
             if (isInited != 0)
             {
-                MessageBox.Show("调用NT_SP_Init失败..");
+                MessageBox.Show("Calling NT_SP_Init failed..");
                 return;
             }
 

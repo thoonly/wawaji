@@ -8,7 +8,7 @@
         xmlns:input="clr-namespace:System.Windows.Input;assembly=PresentationCore"
         xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"  
         mc:Ignorable="d"
-        Title="雪暴科技局域网配置工具" Height="855" Width="1330">
+        Title="Snowstorm Technology LAN Configuration Tool" Height="855" Width="1330">
 
     <Window.Resources>
         <Style x:Key="ListViewItemStyle" TargetType="{x:Type ListViewItem}">
@@ -19,8 +19,8 @@
     <Viewbox Margin="0,0,0,-19">
 
         <Grid Width="1239" Height="746">
-            <Button x:Name="findButton" Content="查找设备" HorizontalAlignment="Right" Margin="0,670,1138,33" Width="75" Click="Button_Click"/>
-            <ListView x:Name="listView" HorizontalAlignment="Left" Height="602" Margin="10,36,0,0" VerticalAlignment="Top" Width="244" ItemContainerStyle="{StaticResource ListViewItemStyle}"  SelectionChanged="lv_SelectionChanged">
+            <Button x:Name="findButton" Content="Find device" HorizontalAlignment="Right" Margin="0,670,1138,33" Width="75" Click="Button_Click"/>
+            <ListView x:Name="listView" HorizontalAlignment="Left" Height="638" Margin="10,0,0,0" VerticalAlignment="Top" Width="244" ItemContainerStyle="{StaticResource ListViewItemStyle}"  SelectionChanged="lv_SelectionChanged">
                 <ListView.View>
                     <GridView>
                         <!--<GridViewColumn Header="机器名" Width="120"  DisplayMemberBinding="{Binding name, Mode=TwoWay}"/>-->
@@ -28,21 +28,17 @@
 
 
                         <GridViewColumn Width="120" DisplayMemberBinding="{Binding name}">
-                            <GridViewColumn.Header>
-                                <GridViewColumnHeader Tag="name" Click="listViewColumnHeader_Click">机器名</GridViewColumnHeader>
-                            </GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="name" Click="listViewColumnHeader_Click" Content="Machine name"/>
                         </GridViewColumn>
                         <GridViewColumn Width="120" DisplayMemberBinding="{Binding ip}">
-                            <GridViewColumn.Header>
-                                <GridViewColumnHeader Tag="ip" Click="listViewColumnHeader_Click">IP地址</GridViewColumnHeader>
-                            </GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="ip" Click="listViewColumnHeader_Click" Content="IP address"/>
                         </GridViewColumn>
 
                     </GridView>
                 </ListView.View>
             </ListView>
             <TabControl HorizontalAlignment="Left" Height="704" Margin="259,9,0,-27" VerticalAlignment="Top" Width="968">
-                <TabItem Header="参数配置">
+                <TabItem Header="Configuration">
                     <Grid x:Name="ConfigServerCheckBox" Background="White">
 
                         <ComboBox x:Name="resolutionInput" HorizontalAlignment="Left" Margin="448,10,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="3" SelectionChanged="resolutionInput_SelectionChanged">
@@ -52,46 +48,46 @@
                             <ComboBoxItem>352*288</ComboBoxItem>
                             <ComboBoxItem>320*240</ComboBoxItem>
                         </ComboBox>
-                        <Label Content="机器名" HorizontalAlignment="Left" Margin="27,5,0,0" VerticalAlignment="Top" Width="62" Height="36"/>
-                        <TextBox x:Name="nameInput" HorizontalAlignment="Left" Height="23" Margin="112,5,0,0" TextWrapping="Wrap" Text="name" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged" MaxLines="1" MaxLength="30"/>
-                        <Label Content="分辨率" HorizontalAlignment="Left" Margin="303,10,0,0" VerticalAlignment="Top"/>
-                        <RadioButton x:Name="resolutionA" Content="预设" HorizontalAlignment="Left" Margin="383,16,0,0" VerticalAlignment="Top" GroupName="resolution" Checked="resolutionA_Checked"/>
-                        <RadioButton x:Name="resolutionM" Content="自定义" HorizontalAlignment="Left" Margin="630,10,0,0" VerticalAlignment="Top" GroupName="resolution" Checked="resolutionM_Checked"/>
-                        <Label Content="宽" HorizontalAlignment="Left" Margin="705,5,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="widthInput" HorizontalAlignment="Left" Height="23" Margin="732,7,0,0" TextWrapping="Wrap" Text="640" VerticalAlignment="Top" Width="78" PreviewTextInput="TextBox_TextChanged_9" MaxLength="4" MaxLines="1" input:InputMethod.IsInputMethodEnabled="False" TextChanged="widthInput_TextChanged"/>
-                        <Label Content="高" HorizontalAlignment="Left" Margin="838,5,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Machine name" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Width="97" Height="36"/>
+                        <TextBox x:Name="nameInput" HorizontalAlignment="Left" Height="23" Margin="120,5,0,0" TextWrapping="Wrap" Text="name" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged" MaxLines="1" MaxLength="30"/>
+                        <Label Content="Resolution" HorizontalAlignment="Left" Margin="303,10,0,0" VerticalAlignment="Top"/>
+                        <RadioButton x:Name="resolutionA" Content="Preset" HorizontalAlignment="Left" Margin="383,16,0,0" VerticalAlignment="Top" GroupName="resolution" Checked="resolutionA_Checked"/>
+                        <RadioButton x:Name="resolutionM" Content="customize" HorizontalAlignment="Left" Margin="630,10,0,0" VerticalAlignment="Top" GroupName="resolution" Checked="resolutionM_Checked"/>
+                        <Label Content="width" HorizontalAlignment="Left" Margin="705,5,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="widthInput" HorizontalAlignment="Left" Height="23" Margin="744,7,0,0" TextWrapping="Wrap" Text="640" VerticalAlignment="Top" Width="78" PreviewTextInput="TextBox_TextChanged_9" MaxLength="4" MaxLines="1" input:InputMethod.IsInputMethodEnabled="False" TextChanged="widthInput_TextChanged"/>
+                        <Label Content="high" HorizontalAlignment="Left" Margin="833,5,0,0" VerticalAlignment="Top"/>
                         <TextBox x:Name="heightInput" HorizontalAlignment="Left" Height="23" Margin="865,5,0,0" TextWrapping="Wrap" Text="360" VerticalAlignment="Top" Width="86" PreviewTextInput="TextBox_TextChanged_10" MaxLength="4" MaxLines="1" input:InputMethod.IsInputMethodEnabled="False" TextChanged="heightInput_TextChanged"/>
-                        <Label Content="推流地址" HorizontalAlignment="Left" Margin="27,61,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="pushUrl_1" HorizontalAlignment="Left" Height="23" Margin="112,61,0,0" TextWrapping="Wrap" Text="pushUrl_1" VerticalAlignment="Top" Width="839" TextChanged="TextBox_TextChanged_1" MaxLines="1" MaxLength="200"/>
-                        <TextBox x:Name="pushUrl_2" HorizontalAlignment="Left" Height="23" Margin="112,106,0,0" TextWrapping="Wrap" Text="pushUrl_2" VerticalAlignment="Top" Width="839" TextChanged="TextBox_TextChanged_2" MaxLines="1" MaxLength="200"/>
+                        <Label Content="Push stream address" HorizontalAlignment="Left" Margin="-1,61,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="pushUrl_1" HorizontalAlignment="Left" Height="23" Margin="123,61,0,0" TextWrapping="Wrap" Text="pushUrl_1" VerticalAlignment="Top" Width="828" TextChanged="TextBox_TextChanged_1" MaxLines="1" MaxLength="200"/>
+                        <TextBox x:Name="pushUrl_2" HorizontalAlignment="Left" Height="23" Margin="123,106,0,0" TextWrapping="Wrap" Text="pushUrl_2" VerticalAlignment="Top" Width="828" TextChanged="TextBox_TextChanged_2" MaxLines="1" MaxLength="200"/>
                         <CheckBox x:Name="DHCPInput" Content="DHCP" HorizontalAlignment="Left" Margin="40,154,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.02,0.875" Checked="CheckBox_Checked" Unchecked="CheckBox_Checked" IsEnabled="False"/>
                         <Label Content="IP" HorizontalAlignment="Left" Margin="112,149,0,0" VerticalAlignment="Top"/>
                         <Label x:Name="IPShow" Content="0.0.0.0" HorizontalAlignment="Left" Margin="166,149,0,0" VerticalAlignment="Top" Width="155"/>
                         <Label Content="mac" HorizontalAlignment="Left" Margin="346,149,0,0" VerticalAlignment="Top"/>
-                        <Label Content="操作指令服务器" HorizontalAlignment="Left" Margin="27,202,0,0" VerticalAlignment="Top"/>
-                        <Label Content="域名或IP" HorizontalAlignment="Left" Margin="180,197,0,0" VerticalAlignment="Top"/>
-                        <Label Content="端口" HorizontalAlignment="Left" Margin="447,195,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Operation instruction server" HorizontalAlignment="Left" Margin="8,197,0,0" VerticalAlignment="Top" Width="175"/>
+                        <Label Content="DNS or IP" HorizontalAlignment="Left" Margin="180,197,0,0" VerticalAlignment="Top" Width="75"/>
+                        <Label Content="Port" HorizontalAlignment="Left" Margin="447,195,0,0" VerticalAlignment="Top"/>
                         <TextBox x:Name="operationServerInput" HorizontalAlignment="Left" Height="23" Margin="260,197,0,0" TextWrapping="Wrap" Text="operationServer" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged_3"/>
                         <TextBox x:Name="operationPortInput" HorizontalAlignment="Left" Height="23" Margin="502,197,0,0" TextWrapping="Wrap" Text="1080" VerticalAlignment="Top" Width="120" PreviewTextInput="TextBox_TextChanged_4"  input:InputMethod.IsInputMethodEnabled="False" MaxLength="6" MaxLines="1" TextChanged="operationPortInput_TextChanged" />
-                        <Label Content="参数配置服务器" HorizontalAlignment="Left" Margin="27,249,0,0" VerticalAlignment="Top" Width="94"/>
-                        <Label Content="域名或IP" HorizontalAlignment="Left" Margin="180,243,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Parameter configuration server" HorizontalAlignment="Left" Margin="8,244,0,0" VerticalAlignment="Top" Width="175"/>
+                        <Label Content="DNS or IP" HorizontalAlignment="Left" Margin="182,244,0,0" VerticalAlignment="Top"/>
                         <TextBox x:Name="configServerInput" HorizontalAlignment="Left" Height="24" Margin="260,243,0,0" TextWrapping="Wrap" Text="configServer" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged_5"/>
                         <TextBox x:Name="configPortInput" HorizontalAlignment="Left" Height="24" Margin="502,243,0,0" TextWrapping="Wrap" Text="1081" VerticalAlignment="Top" Width="120" PreviewTextInput="TextBox_TextChanged_6" MaxLength="6" MaxLines="1" input:InputMethod.IsInputMethodEnabled="False" TextChanged="configPortInput_TextChanged"/>
-                        <Label Content="端口" HorizontalAlignment="Left" Margin="447,241,0,0" VerticalAlignment="Top"/>
-                        <CheckBox x:Name="hwEncodeInput" Content="硬编码" HorizontalAlignment="Left" Margin="38,297,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked_1" Unchecked="CheckBox_Checked_1"/>
-                        <Label Content="画质质量" HorizontalAlignment="Left" Margin="143,289,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.15,0.212"/>
-                        <ComboBox x:Name="encodeQualityInput" HorizontalAlignment="Left" Margin="227,289,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_SelectionChanged">
+                        <Label Content="Port" HorizontalAlignment="Left" Margin="447,241,0,0" VerticalAlignment="Top"/>
+                        <CheckBox x:Name="hwEncodeInput" Content="hardcode" HorizontalAlignment="Left" Margin="38,297,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked_1" Unchecked="CheckBox_Checked_1"/>
+                        <Label Content="Quality of picture" HorizontalAlignment="Left" Margin="143,289,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.15,0.212"/>
+                        <ComboBox x:Name="encodeQualityInput" HorizontalAlignment="Left" Margin="259,289,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_SelectionChanged">
                             <ComboBoxItem>baseline profile</ComboBoxItem>
                             <ComboBoxItem>main profile</ComboBoxItem>
                             <ComboBoxItem>high profile</ComboBoxItem>
                         </ComboBox>
-                        <Label Content="关键帧间隔" HorizontalAlignment="Left" Margin="413,284,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Key frame interval" HorizontalAlignment="Left" Margin="396,284,0,0" VerticalAlignment="Top"/>
                         <TextBox x:Name="encodeNumInput" HorizontalAlignment="Left" Height="23" Margin="502,289,0,0" TextWrapping="Wrap" Text="2" VerticalAlignment="Top" Width="65" PreviewTextInput="TextBox_TextChanged_7" MaxLength="3" MaxLines="1" input:InputMethod.IsInputMethodEnabled="False" TextChanged="encodeNumInput_TextChanged"/>
-                        <Label Content="帧率" HorizontalAlignment="Left" Margin="644,285,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Frame rate" HorizontalAlignment="Left" Margin="614,285,0,0" VerticalAlignment="Top"/>
                         <TextBox x:Name="fpsInput" HorizontalAlignment="Left" Height="23" Margin="686,287,0,0" TextWrapping="Wrap" Text="20" VerticalAlignment="Top" Width="56" PreviewTextInput="TextBox_TextChanged_8" MaxLength="2" MaxLines="1"  input:InputMethod.IsInputMethodEnabled="False" TextChanged="fpsInput_TextChanged"/>
-                        <CheckBox x:Name="recordInput" Content="录像" HorizontalAlignment="Left" Margin="811,289,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked_2" Unchecked="CheckBox_Checked_2"/>
-                        <Label Content="用户ID" HorizontalAlignment="Left" Margin="621,149,0,0" VerticalAlignment="Top"/>
-                        <Button x:Name="savaApplyButton" Content="保存并应用" Margin="796,343,71,0" VerticalAlignment="Top" Height="42" Click="Button_Click_1" RenderTransformOrigin="0.5,0.5"/>
+                        <CheckBox x:Name="recordInput" Content="Video" HorizontalAlignment="Left" Margin="811,289,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked_2" Unchecked="CheckBox_Checked_2"/>
+                        <Label Content="User ID" HorizontalAlignment="Left" Margin="621,149,0,0" VerticalAlignment="Top"/>
+                        <Button x:Name="savaApplyButton" Content="Save and apply" Margin="796,343,71,0" VerticalAlignment="Top" Height="42" Click="Button_Click_1" RenderTransformOrigin="0.5,0.5"/>
                         <Label x:Name="LogLabel" Content="" HorizontalAlignment="Left" Margin="77,359,0,0" VerticalAlignment="Top" Width="281" Foreground="Black"/>
 
                         <WindowsFormsHost HorizontalAlignment="Left" Width="204" Margin="478,414,0,4">
@@ -99,54 +95,57 @@
                         </WindowsFormsHost>
 
 
-                        <RadioButton x:Name="playModeRadio_same" Content="播放同推流" HorizontalAlignment="Left" Margin="40,422,0,0" VerticalAlignment="Top" GroupName="playerUrlMode"  Checked="RadioButton_Checked"/>
-                        <RadioButton x:Name="playModeRadio_ali" Content="阿里直播格式" HorizontalAlignment="Left" Margin="40,458,0,0" VerticalAlignment="Top" GroupName="playerUrlMode"  Checked="RadioButton_Checked_1"/>
-                        <RadioButton Content="自定义" HorizontalAlignment="Left" Margin="40,493,0,0" VerticalAlignment="Top" GroupName="playerUrlMode" Checked="RadioButton_Checked_2"/>
-                        <TextBox x:Name="playUrl_1" HorizontalAlignment="Left" Height="23" Margin="40,529,0,0" TextWrapping="Wrap" Text="自定义_1" VerticalAlignment="Top" Width="378" TextChanged="TextBox_TextChanged_1" MaxLines="1" MaxLength="200"/>
-                        <TextBox x:Name="playUrl_2" HorizontalAlignment="Left" Height="23" Margin="40,568,0,0" TextWrapping="Wrap" Text="自定义_2" VerticalAlignment="Top" Width="378" TextChanged="TextBox_TextChanged_1" MaxLines="1" MaxLength="200"/>
-                        <Button x:Name="swithCamera" Content="切换镜头" HorizontalAlignment="Left" Margin="838,606,0,0" VerticalAlignment="Top" Width="75" Height="49" Click="Button_Click_2"/>
-                        <Label Content="当前显示摄像头:" HorizontalAlignment="Left" Margin="348,415,0,0" VerticalAlignment="Top" Width="97" Height="26"/>
+                        <RadioButton x:Name="playModeRadio_same" Content="Play the same push stream" HorizontalAlignment="Left" Margin="40,422,0,0" VerticalAlignment="Top" GroupName="playerUrlMode"  Checked="RadioButton_Checked"/>
+                        <RadioButton x:Name="playModeRadio_ali" Content="Ali live format" HorizontalAlignment="Left" Margin="40,458,0,0" VerticalAlignment="Top" GroupName="playerUrlMode"  Checked="RadioButton_Checked_1"/>
+                        <RadioButton Content="customize" HorizontalAlignment="Left" Margin="40,493,0,0" VerticalAlignment="Top" GroupName="playerUrlMode" Checked="RadioButton_Checked_2"/>
+                        <TextBox x:Name="playUrl_1" HorizontalAlignment="Left" Height="23" Margin="40,529,0,0" TextWrapping="Wrap" Text="Custom_1" VerticalAlignment="Top" Width="378" TextChanged="TextBox_TextChanged_1" MaxLines="1" MaxLength="200"/>
+                        <TextBox x:Name="playUrl_2" HorizontalAlignment="Left" Height="23" Margin="40,568,0,0" TextWrapping="Wrap" Text="Custom_2" VerticalAlignment="Top" Width="378" TextChanged="TextBox_TextChanged_1" MaxLines="1" MaxLength="200"/>
+                        <Button x:Name="swithCamera" Content="Switch lens" HorizontalAlignment="Left" Margin="838,606,0,0" VerticalAlignment="Top" Width="75" Height="49" Click="Button_Click_2"/>
+                        <Label Content="Currently displaying camera:" HorizontalAlignment="Left" Margin="279,415,0,0" VerticalAlignment="Top" Width="166" Height="26"/>
                         <Label x:Name="playUrlNum" Content="1" HorizontalAlignment="Left" Margin="447,414,0,0" VerticalAlignment="Top" Width="23"/>
-                        <Button x:Name="btn_play" Content="播放" HorizontalAlignment="Left" Margin="728,608,0,0" VerticalAlignment="Top" Width="75" Height="45" Click="btn_play_Click"/>
+                        <Button x:Name="btn_play" Content="Play" HorizontalAlignment="Left" Margin="728,608,0,0" VerticalAlignment="Top" Width="75" Height="45" Click="btn_play_Click"/>
                         <Rectangle Fill="#FF53E012" HorizontalAlignment="Left" Height="6" Margin="0,398,-12,0" Stroke="Black" VerticalAlignment="Top" Width="970"/>
                         <TextBox x:Name="pwdShow" HorizontalAlignment="Left" Height="23" Margin="690,147,0,0" TextWrapping="Wrap" Text="userID" VerticalAlignment="Top" Width="187"  input:InputMethod.IsInputMethodEnabled="False" MaxLines="1" MaxLength="16" TextChanged="pwdShow_TextChanged"/>
                         <Label Content="Log:" HorizontalAlignment="Left" Margin="38,359,0,0" VerticalAlignment="Top"/>
                         <Rectangle Fill="#FF53E012" HorizontalAlignment="Left" Height="6" Margin="0,606,0,0" Stroke="Black" VerticalAlignment="Top" Width="445"/>
-                        <Label Content="应用版本号：" HorizontalAlignment="Left" Margin="27,629,0,0" VerticalAlignment="Top" Width="89"/>
-                        <Label x:Name="Versionlabel" Content="0" HorizontalAlignment="Left" Margin="121,629,0,0" VerticalAlignment="Top" Width="80"/>
+                        <Label Content="Application vers. :" HorizontalAlignment="Left" Margin="9,629,0,0" VerticalAlignment="Top" Width="109"/>
+                        <Label x:Name="Versionlabel" Content="0" HorizontalAlignment="Left" Margin="113,629,0,0" VerticalAlignment="Top" Width="80"/>
                         <TextBox x:Name="macShow" HorizontalAlignment="Left" Height="23" Margin="399,149,0,0" TextWrapping="Wrap" Text="00-00-00-00--00-00" VerticalAlignment="Top" Width="133" IsReadOnly="True"/>
-                        <CheckBox x:Name="enableConfigServerCheckBox" Content="启用配置服务器功能" HorizontalAlignment="Left" Margin="669,248,0,0" VerticalAlignment="Top" Height="19" Width="134" Checked="CheckBox_Checked_3"  Unchecked="CheckBox_Checked_3"/>
-                        <CheckBox x:Name="switchToOneCheckBox" Content="切换至一路(不要随意更改此值，除非你清楚)" HorizontalAlignment="Left" Margin="38,330,0,0" VerticalAlignment="Top" Width="268"   Checked="CheckBox_Checked_4" Unchecked="CheckBox_Checked_4" />
-                        <CheckBox x:Name="containAudioCheckBox" Content="包含声音" HorizontalAlignment="Left" Margin="345,330,0,0" VerticalAlignment="Top" Width="78" Checked="containAudioCheckBox_Checked" Unchecked="containAudioCheckBox_Checked"/>
-                        <CheckBox x:Name="usingCustomConfigCheck" Content="自定义渲染(需要安卓板支持)" HorizontalAlignment="Left" Margin="715,417,0,0" VerticalAlignment="Top" Checked="usingCustomConfigCheckBox_Checked" Unchecked="usingCustomConfigCheckBox_Checked" Width="181"/>
-                        <Slider x:Name="staturationSlider" HorizontalAlignment="Left" Margin="715,452,0,0" VerticalAlignment="Top" Width="220" Maximum="255" SmallChange="1" ValueChanged="staturationSlider_ValueChanged"/>
-                        <Slider x:Name="contrastSlider" HorizontalAlignment="Left" Margin="715,501,0,0" VerticalAlignment="Top" Width="220" Maximum="255" SmallChange="1" ValueChanged="contrastSlider_ValueChanged"/>
-                        <Slider x:Name="brightnessSlider" HorizontalAlignment="Left" Margin="715,548,0,0" VerticalAlignment="Top" Width="220" Minimum="-255" Maximum="255" SmallChange="1" ValueChanged="brightnessSlider_ValueChanged"/>
-                        <Label Content="饱&#xD;&#xA;和" HorizontalAlignment="Left" Height="44" Margin="686,440,0,0" VerticalAlignment="Top" Width="24"/>
-                        <Label Content="对&#xD;&#xA;比" HorizontalAlignment="Left" Height="44" Margin="687,491,0,0" VerticalAlignment="Top" Width="24" RenderTransformOrigin="0.522,1.834"/>
-                        <Label Content="亮&#xD;&#xA;度" HorizontalAlignment="Left" Height="44" Margin="687,540,0,0" VerticalAlignment="Top" Width="24"/>
+                        <CheckBox x:Name="enableConfigServerCheckBox" Content="Enable configuration server features" HorizontalAlignment="Left" Margin="669,248,0,0" VerticalAlignment="Top" Height="19" Width="282" Checked="CheckBox_Checked_3"  Unchecked="CheckBox_Checked_3"/>
+                        <CheckBox x:Name="switchToOneCheckBox" Content="Switch to all the way (don't change this value at will, unless you know)" HorizontalAlignment="Left" Margin="38,330,0,0" VerticalAlignment="Top" Width="395"   Checked="CheckBox_Checked_4" Unchecked="CheckBox_Checked_4" Height="24" />
+                        <CheckBox x:Name="containAudioCheckBox" Content="Contains sound" HorizontalAlignment="Left" Margin="438,330,0,0" VerticalAlignment="Top" Width="129" Checked="containAudioCheckBox_Checked" Unchecked="containAudioCheckBox_Checked"/>
+                        <CheckBox x:Name="usingCustomConfigCheck" Content="Custom rendering (requires Android board)" HorizontalAlignment="Left" Margin="690,417,0,0" VerticalAlignment="Top" Checked="usingCustomConfigCheckBox_Checked" Unchecked="usingCustomConfigCheckBox_Checked" Width="262" Height="30"/>
+                        <Slider x:Name="staturationSlider" HorizontalAlignment="Left" Margin="715,466,0,0" VerticalAlignment="Top" Width="220" Maximum="255" SmallChange="1" ValueChanged="staturationSlider_ValueChanged"/>
+                        <Slider x:Name="contrastSlider" HorizontalAlignment="Left" Margin="715,509,0,0" VerticalAlignment="Top" Width="220" Maximum="255" SmallChange="1" ValueChanged="contrastSlider_ValueChanged"/>
+                        <Slider x:Name="brightnessSlider" HorizontalAlignment="Left" Margin="715,557,0,0" VerticalAlignment="Top" Width="220" Minimum="-255" Maximum="255" SmallChange="1" ValueChanged="brightnessSlider_ValueChanged"/>
+                        <Label Content="saturation" HorizontalAlignment="Left" Height="24" Margin="686,440,0,0" VerticalAlignment="Top" Width="77"/>
+                        <Label Content="contrast" HorizontalAlignment="Left" Height="24" Margin="686,484,0,0" VerticalAlignment="Top" Width="76" RenderTransformOrigin="0.522,1.834"/>
+                        <Label Content="brightness" HorizontalAlignment="Left" Height="27" Margin="686,528,0,0" VerticalAlignment="Top" Width="74"/>
+                        <TextBox x:Name="kbpsInput" HorizontalAlignment="Left" Height="23" Margin="686,315,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="77"/>
+                        <Label Content="kbps Input" HorizontalAlignment="Left" Margin="614,312,0,0" VerticalAlignment="Top"/>
 
 
 
                     </Grid>
                 </TabItem>
-                <TabItem Header="应用升级">
+                <TabItem Header="Upgrade">
                     <Grid Background="#FFE5E5E5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="15*"/>
-                            <ColumnDefinition Width="943*"/>
+                            <ColumnDefinition Width="37*"/>
+                            <ColumnDefinition Width="910*"/>
                         </Grid.ColumnDefinitions>
-                        <Label Content="新版的应用下载地址：" HorizontalAlignment="Left" Margin="3.178,46,0,0" VerticalAlignment="Top" Width="135" Grid.Column="1"/>
-                        <TextBox x:Name="apkUrlInput" HorizontalAlignment="Left" Height="23" Margin="32.178,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="837" Grid.Column="1"/>
-                        <Button x:Name="UpdateApkButton" Content="开始升级" HorizontalAlignment="Left" Margin="762.178,121,0,0" VerticalAlignment="Top" Width="107" Height="37" Click="Button_Click_3" Grid.Column="1"/>
-                        <Label Content="提示：&#xD;&#xA;    1.升级会从给定的地址下载应用，然后会自动安装&#xD;&#xA;    2.升级的版本版本号要不低于当前的应用版本号&#xD;&#xA;    3.升级过程要确保安卓板能够正常下载到新版应用&#xD;&#xA;    4.升级过程需要时间比较久，请耐心等候&#xD;&#xA;    5.升级完成后安卓板会自动重启&#xD;&#xA;    6.如果遇到要版本回退，请使用局域网批量部署工具" HorizontalAlignment="Left" Margin="32.178,173,0,0" VerticalAlignment="Top" Height="176" Width="458" FontSize="16" Grid.Column="1"/>
-                        <Label Content="Log:" Grid.Column="1" HorizontalAlignment="Left" Margin="32,121,0,0" VerticalAlignment="Top" Width="38"/>
-                        <Label x:Name="UpdateLogLabel" Content="" Grid.Column="1" HorizontalAlignment="Left" Margin="75,121,0,0" VerticalAlignment="Top" Width="355"/>
+                        <Label Content="The new version of the application download address:" HorizontalAlignment="Left" Margin="3,46,0,0" VerticalAlignment="Top" Width="320" Grid.Column="1" Grid.ColumnSpan="2"/>
+                        <TextBox x:Name="apkUrlInput" HorizontalAlignment="Left" Height="23" Margin="32,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="837" Grid.Column="1" Grid.ColumnSpan="2"/>
+                        <Button x:Name="UpdateApkButton" Content="Start upgrading" HorizontalAlignment="Left" Margin="725.033,121,0,0" VerticalAlignment="Top" Width="107" Height="37" Click="Button_Click_3" Grid.Column="2"/>
+                        <Label Content="prompt:&#xA;    1. The upgrade will download the app from the given address and then install it automatically.&#xA;    2. The upgraded version number must be no lower than the current application version number.&#xA;    3. The upgrade process ensures that the Android board can be downloaded to the new version of the application.&#xA;    4. The upgrade process takes a long time, please be patient&#xA;    5. After the upgrade is completed, the Android board will automatically restart.&#xA;    6. If you are experiencing a version rollback, please use the LAN batch deployment tool" HorizontalAlignment="Left" Margin="32,173,0,0" VerticalAlignment="Top" Height="176" Width="837" FontSize="16" Grid.Column="1" Grid.ColumnSpan="2"/>
+                        <Label Content="Log:" Grid.Column="1" HorizontalAlignment="Left" Margin="32,121,0,0" VerticalAlignment="Top" Width="38" Grid.ColumnSpan="2"/>
+                        <Label x:Name="UpdateLogLabel" Content="" Grid.Column="2" HorizontalAlignment="Left" Margin="38.033,121,0,0" VerticalAlignment="Top" Width="355"/>
                     </Grid>
                 </TabItem>
             </TabControl>
             <TextBox x:Name="numText" HorizontalAlignment="Left" Height="22" Margin="199,654,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="38" IsReadOnly="True" MaxLines="1"/>
-            <Label Content="数量" HorizontalAlignment="Left" Margin="160,652,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.982,0.658"/>
+            <Label Content="Quantity" HorizontalAlignment="Left" Margin="148,652,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.982,0.658"/>
 
         </Grid>
     </Viewbox>
