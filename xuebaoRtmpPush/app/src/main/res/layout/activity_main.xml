@@ -5,29 +5,30 @@
     android:background="#FFF"
     >
     <!-- 标题栏 -->
+
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
         android:id="@+id/rel_title"
-        >
-        <ImageView android:id="@+id/img"
-            android:src="@drawable/titlebar_bg"
-            android:scaleType="fitXY"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:id="@+id/img"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/titlebar_bg" />
 
         <TextView
             android:id="@+id/id_mac"
-            android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
             android:gravity="center"
+            android:text="MAC"
             android:textColor="#FFFF0000"
-            android:textSize="18sp"
-            android:text="机器MAC"
-            android:layout_centerVertical="true"/>
-
+            android:textSize="18sp" />
 
 
         <TextView
@@ -36,7 +37,7 @@
             android:layout_height="fill_parent"
             android:layout_marginTop="5dp"
             android:gravity="center"
-            android:text="安卓双路推流"
+            android:text="Android dual channel push"
             android:textColor="#FFF"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -63,7 +64,7 @@
                 android:id="@+id/id_my_name_tip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="本机名称:"
+                android:text="LocalName:"
                 android:textColor="@android:color/black" />
 
             <EditText
@@ -71,24 +72,23 @@
                 android:layout_toRightOf="@+id/id_my_name_tip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="娃娃名称方便管理"
+                android:text="Doll name for easy to manage"
                 android:textColor="@android:color/black" />
 
             <CheckBox
                 android:id="@+id/checkBoxAutoGet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="自动获取IP"
-                android:visibility="gone"
-               />
+                android:text="Obtain IP auto"
+                android:visibility="gone" />
 
             <TextView
-            android:id="@+id/my_ip_tip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="本机IP:"
-            android:textColor="@android:color/black" />
+                android:id="@+id/my_ip_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="IP:"
+                android:textColor="@android:color/black" />
 
             <EditText
                 android:id="@+id/my_ip_addr"
@@ -103,18 +103,18 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:text="网关:"
+                android:text="Gateway"
                 android:textColor="@android:color/black"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <EditText
                 android:id="@+id/my_gate_addr"
                 android:layout_width="0dp"
-                android:textSize="16dip"
                 android:layout_height="wrap_content"
                 android:text="0.0.0.0"
                 android:textColor="@android:color/black"
-                android:visibility="gone"/>
+                android:textSize="16dip"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/my_netmask_tip"
@@ -140,17 +140,17 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
-                android:text="所属用户:"
+                android:text="USERID:"
                 android:textColor="@android:color/black" />
 
             <EditText
                 android:id="@+id/id_userid"
                 android:layout_width="100dp"
-                android:textSize="16dip"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:hint="16bits"
                 android:maxLength="16"
-                android:hint="16位" />
+                android:textSize="16dip" />
 
         </LinearLayout>
 
@@ -161,22 +161,22 @@
             android:id="@+id/video_config"
             android:layout_below="@id/my_info"
             >
+
             <TextView
                 android:id="@+id/video_size_tip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="分辨率" />
+                android:text="Resolution" />
 
             <CheckBox
                 android:id="@+id/checkUsePrefence"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/video_size_tip"
-                android:layout_marginLeft="10dp"
                 android:layout_centerVertical="true"
-                android:text="使用预设"
-                />
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/video_size_tip"
+                android:text="preset" />
 
             <Spinner
                 android:id="@+id/resolutionSelctor"
@@ -190,10 +190,10 @@
                 android:id="@+id/custum_w_tip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/checkUsePrefence"
-                android:layout_marginLeft="10dp"
                 android:layout_centerVertical="true"
-                android:text="宽:" />
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/checkUsePrefence"
+                android:text="width:" />
 
             <EditText
                 android:id="@+id/custum_wideo_w"
@@ -209,10 +209,10 @@
                 android:id="@+id/custum_h_tip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/custum_wideo_w"
-                android:layout_marginLeft="10dp"
                 android:layout_centerVertical="true"
-                android:text="高:" />
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/custum_wideo_w"
+                android:text="high:" />
 
             <EditText
                 android:id="@+id/custum_wideo_h"
@@ -228,9 +228,9 @@
                 android:id="@+id/video_tip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="350dp"
                 android:layout_centerVertical="true"
-                android:text="推流方式" />
+                android:layout_marginLeft="350dp"
+                android:text="PushFlow" />
 
             <RadioGroup
                 android:layout_width="wrap_content"
@@ -243,11 +243,12 @@
                     android:layout_height="wrap_content"
                     android:text="RTMP"
                     android:id="@+id/rb_rtmp"/>
+
                 <RadioButton
+                    android:id="@+id/rb_mpeg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="MPEG"
-                    android:id="@+id/rb_mpeg"/>
+                    android:text="MPEG" />
             </RadioGroup>
 
         </RelativeLayout>
@@ -264,7 +265,8 @@
                 android:id="@+id/button_hwencoder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="当前软编码" />
+                android:text="Hardware Encoder"
+                android:textAllCaps="false" />
 
             <Spinner
                 android:id="@+id/swVideoEncoderProfileSelector"
@@ -275,7 +277,7 @@
                 android:id="@+id/speed_tip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="编码速度" />
+                android:text="EncodeSpeed" />
 
             <Spinner
                 android:id="@+id/sw_video_encoder_speed_selctor"
@@ -285,7 +287,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="帧率:" />
+                android:text="Frame:" />
 
             <EditText
                 android:id="@+id/push_rate"
@@ -299,7 +301,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="码率:" />
+                android:text="bit:" />
 
             <EditText
                 android:id="@+id/push_bitrate"
@@ -341,7 +343,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:text="前置摄像头推流地址:"
+                android:text="FrontCamPushAddress"
                 android:textColor="@android:color/black" />
 
             <EditText
@@ -368,7 +370,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:text="后置摄像头推流地址:"
+                android:text="RearCamPushAddress"
                 android:textColor="@android:color/black" />
 
             <EditText
@@ -394,7 +396,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="应用服务器:"
+                android:text="ServerIP:"
                 android:textColor="@android:color/black" />
 
             <EditText
@@ -403,16 +405,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/server_ip_tip"
-                android:hint="域名或IP" />
+                android:hint="DNS or IP" />
 
             <TextView
                 android:id="@+id/server_port_tip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/server_ip"
                 android:layout_marginLeft="10dp"
-                android:text="端口:"
+                android:layout_toRightOf="@+id/server_ip"
+                android:text="Port"
                 android:textColor="@android:color/black" />
 
             <EditText
@@ -428,9 +430,8 @@
                 android:id="@+id/enableConfServer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="启用远程配置功能"
                 android:layout_toRightOf="@id/server_port"
-                />
+                android:text="enableRemoteConf" />
 
             <TextView
                 android:id="@+id/configserver_ip_tip"
@@ -439,7 +440,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="30dp"
                 android:layout_toRightOf="@id/enableConfServer"
-                android:text="配置服务器:"
+                android:text="configServ"
                 android:textColor="@android:color/black" />
 
             <EditText
@@ -455,10 +456,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/config_server_ip"
                 android:layout_marginLeft="10dp"
-                android:text="端口:"
+                android:layout_toRightOf="@+id/config_server_ip"
                 android:inputType="number"
+                android:text="port:"
                 android:textColor="@android:color/black" />
 
             <EditText
@@ -485,21 +486,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:text="保存并推送" />
+                android:text="Save Push" />
 
             <CheckBox
                 android:id="@+id/checkRecord"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="启用录像"
-                />
+                android:text="enableRec" />
 
             <TextView
                 android:id="@+id/devSpace"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="已有录像数: 存储空间剩余:"
+                android:text="Number of videos already available: Storage space remaining:"
                 android:textColor="@android:color/black" />
 
         </LinearLayout>
@@ -518,20 +518,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:text="前置摄像头:"
-                android:textColor="@android:color/black"
                 android:layout_centerVertical="true"
-                />
+                android:text="FrontCam"
+                android:textColor="@android:color/black" />
 
             <TextView
                 android:id="@+id/cam2_tip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="220dp"
-                android:text="后置摄像头:"
-                android:textColor="@android:color/black"
                 android:layout_centerVertical="true"
-                />
+                android:layout_marginLeft="220dp"
+                android:text="RearCam"
+                android:textColor="@android:color/black" />
 
 
         </RelativeLayout>
