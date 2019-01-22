@@ -226,7 +226,7 @@ namespace WpfApp1
                 try
                 {
                     System.Net.Sockets.TcpClient c = new System.Net.Sockets.TcpClient();
-                    c.Connect("www.baidu.com", 80);
+                    c.Connect("www.google.co.th", 80);
                     string ip = ((System.Net.IPEndPoint)c.Client.LocalEndPoint).Address.ToString();
                     c.Close();
                     return ip;
@@ -555,7 +555,7 @@ namespace WpfApp1
                         NTSmartPlayerSDK.NT_SP_StopPlay(player_handle_);
                         is_playing_ = false;
                         pictureBox1.Invalidate();   //清空最后一帧数据，如不加，默认保留最后一帧画面
-                        btn_play.Content = "播放";
+                        btn_play.Content = "Play";
                 }
                 
             }
@@ -955,7 +955,7 @@ namespace WpfApp1
             portIndex = url.LastIndexOf(":");
             if ((servernameIndex == -1) || (portIndex == -1))
             {
-                playUrl_1.Text = "出错了";
+                playUrl_1.Text = "error";
                 
             }
             else
@@ -974,7 +974,7 @@ namespace WpfApp1
             portIndex = url.LastIndexOf(":");
             if ((servernameIndex == -1) || (portIndex == -1))
             {
-                playUrl_2.Text = "出错了";
+                playUrl_2.Text = "error";
                 
             }
             else
@@ -1182,7 +1182,7 @@ namespace WpfApp1
                 if (ret_open != 0)
                 {
                     player_handle_ = IntPtr.Zero;
-                    MessageBox.Show("调用NT_SP_Open失败..");
+                    MessageBox.Show("Calling NT_SP_Open failed..");
                     return;
                 }
             }
@@ -1304,29 +1304,29 @@ namespace WpfApp1
 
             if (connection_status_ != 0)
             {
-                show_str += "链接状态: ";
+                show_str += "Link status: ";
 
                 if ((UInt32)NTSmartPlayerDefine.NT_SP_E_EVENT_ID.NT_SP_E_EVENT_ID_CONNECTING == connection_status_)
                 {
-                    show_str += "链接中";
+                    show_str += "In the link";
                 }
                 else if ((UInt32)NTSmartPlayerDefine.NT_SP_E_EVENT_ID.NT_SP_E_EVENT_ID_CONNECTION_FAILED == connection_status_)
                 {
-                    show_str += "链接失败";
+                    show_str += "Link failed";
                 }
                 else if ((UInt32)NTSmartPlayerDefine.NT_SP_E_EVENT_ID.NT_SP_E_EVENT_ID_CONNECTED == connection_status_)
                 {
-                    show_str += "链接成功";
+                    show_str += "Successful link";
                 }
                 else if ((UInt32)NTSmartPlayerDefine.NT_SP_E_EVENT_ID.NT_SP_E_EVENT_ID_DISCONNECTED == connection_status_)
                 {
-                    show_str += "链接断开";
+                    show_str += "Link disconnect";
                 }
             }
 
             if (download_speed_ != -1)
             {
-                String ss = "  下载速度: " + (download_speed_ * 8 / 1000).ToString() + "kbps " + (download_speed_ / 1024).ToString() + "KB/s";
+                String ss = "  download speed: " + (download_speed_ * 8 / 1000).ToString() + "kbps " + (download_speed_ / 1024).ToString() + "KB/s";
                 // speedLabl.Content = (download_speed_ / 1024).ToString() + "KB/s";
 
                 show_str += ss;
@@ -1334,20 +1334,20 @@ namespace WpfApp1
 
             if (buffer_status_ != 0)
             {
-                show_str += "  缓冲状态: ";
+                show_str += "  Buffer state: ";
 
                 if ((UInt32)NTSmartPlayerDefine.NT_SP_E_EVENT_ID.NT_SP_E_EVENT_ID_START_BUFFERING == buffer_status_)
                 {
-                    show_str += "开始缓冲";
+                    show_str += "Start buffering";
                 }
                 else if ((UInt32)NTSmartPlayerDefine.NT_SP_E_EVENT_ID.NT_SP_E_EVENT_ID_BUFFERING == buffer_status_)
                 {
-                    String ss = "缓冲中 " + buffer_percent_.ToString() + "%";
+                    String ss = "Buffering " + buffer_percent_.ToString() + "%";
                     show_str += ss;
                 }
                 else if ((UInt32)NTSmartPlayerDefine.NT_SP_E_EVENT_ID.NT_SP_E_EVENT_ID_STOP_BUFFERING == buffer_status_)
                 {
-                    show_str += "结束缓冲";
+                    show_str += "End buffer";
                 }
             }
         }
@@ -1365,13 +1365,13 @@ namespace WpfApp1
 
             playUrlNum.Content = playNowNum.ToString();
 
-            if (btn_play.Content.Equals("播放"))
+            if (btn_play.Content.Equals("Play"))
             {
                 if (!is_recording_)
                 {
                     if (!InitCommonSDKParam())
                     {
-                        MessageBox.Show("设置参数错误!");
+                        MessageBox.Show("Setting parameter error!");
                         return;
                     }
                 }
@@ -1385,14 +1385,14 @@ namespace WpfApp1
 
                 if (ret_start != 0)
                 {
-                    MessageBox.Show("播放失败..");
+                    MessageBox.Show("Playback failed..");
                     return;
                 }
 
 
                 is_playing_ = true;
 
-                btn_play.Content = "停止";
+                btn_play.Content = "Stop";
             }
             else
             {
@@ -1405,7 +1405,7 @@ namespace WpfApp1
                     pictureBox1.Invalidate();   //清空最后一帧数据，如不加，默认保留最后一帧画面
                 }
 
-                btn_play.Content = "播放";
+                btn_play.Content = "Play";
                 //lable_cur_status_txt.Content = "";
             }
 
