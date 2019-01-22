@@ -25,19 +25,23 @@ public class SimpleApp {
 		int bb = (int)aa;
 		int c = bb;
 
-		wserver = new WawaServer();//处理娃娃机应用消息的类。你应该在这部分完成：处理娃娃机心跳保活，超时，并维护娃娃机状态(空闲，可用，当前玩家，当前在这个房间里面的玩家等等信息)
-		wserver.Start(7770);//此即安卓板所连接的应用服务器端口
+		wserver = new WawaServer();// A class that handles doll machine application messages. You should do this in
+									// this section: handle the doll machine heartbeat keeps alive, timeout, and
+									// maintain the state of the doll machine (idle, available, current player,
+									// current player in this room, etc.)
+		wserver.Start(7770);// This is the application server port to which the Android board is connected.
 
-		cserver = new ClientServer();//处理玩家app的类。
-		cserver.Start(7771);//玩家app所连的端口
+		cserver = new ClientServer();// Class that handles the player app。
+		cserver.Start(7771);// The port to which the player app is connected
 
-		conf_server = new ConfigServer();//此即为配置服务器。此服务器负责娃娃机列表，转发娃娃机参数
-		conf_server.Start(7776);//安卓板所连接的配置服务器端口
+		conf_server = new ConfigServer();// This is the configuration server. This server is responsible for the doll
+											// machine list and forwards the doll machine parameters.
+		conf_server.Start(7776);// Configuration server port connected to the Android board
 
-		conf_clientserver = new ConfigClientServer();//外网配置工具处理类
+		conf_clientserver = new ConfigClientServer();// External network configuration tool processing class
 		conf_clientserver.Start(7778);
 
-		while (app_should_stop == false) {//死循环监听是否输入exit。如果输入exit则，正常的退出。
+		while (app_should_stop == false) {// Infinite loop listener whether to enter exit. If you enter exit, the normal exit.
 			try {
 				InputStreamReader is_reader = new InputStreamReader(System.in);
 				String str = new BufferedReader(is_reader).readLine();

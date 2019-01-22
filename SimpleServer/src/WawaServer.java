@@ -23,10 +23,11 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 //handle msg from wawaji.
-//娃娃机信息简单版。
+//Doll machine information simple version。
 class MachineInfo
 {
-	//MAC地址:唯一标识一台娃娃机。这是来自于安卓板的以太网端口。你应该以此作为数据库的主键字段
+	//MAC Address: Uniquely identifies a doll machine. This is the Ethernet port
+	// from the Android board. You should use this as the primary key field of the database
 	public String mac;//identify for wawa machine.
 	
 	//名称(方便管理娃娃机的。并无实际意义，你可以把里面放的娃娃作为该娃娃机的名称，方便你看到就知道是哪台娃娃机)
@@ -100,7 +101,7 @@ public class WawaServer {
 			public void run() {
 				try {
 					listenSocket = new ServerSocket();
-					listenSocket.bind(new InetSocketAddress("0.0.0.0", nport));//监听本机所有网卡的该端口。别问为什么。。。
+					listenSocket.bind(new InetSocketAddress("0.0.0.0", nport));// Listen to this port on all NICs of this machine. Don't ask why。。。
 					while (showldStop == false) {
 						Socket cur_socket = listenSocket.accept();
 
@@ -145,7 +146,7 @@ public class WawaServer {
 			newThread = null;
 		}
 		
-		//遍历一次 把所有客户全关掉。
+		// Traverse once, turn all customers off。
 		synchronized (all_machines) {
 			Iterator<Map.Entry<String, MachineInfo>> iter = all_machines.entrySet().iterator();
 			while (iter.hasNext()) {
@@ -195,7 +196,7 @@ public class WawaServer {
 		return true;
 	}
 	
-	//转发消息给当前正在玩的玩家
+	// Forward the message to the player currently playing
 	void processMsgtoPlayer(String MAC, byte[] data) 
 	{
 		MachineInfo macInfo = all_machines.get( MAC ); 
@@ -411,16 +412,20 @@ public class WawaServer {
 					}
 					System.out.println();*/
 					me.recvCount ++;
-					if(data_cmd == 0x31) {//开局结果返回。通知玩家是否开局成功。由于串口数据有丢失率。因此发0x31给娃娃机的时候，最好起一个超时计时器，未收到开局则隔100ms继续发。
-						//todo-标记娃娃机的状态为不空闲。不再接受其他玩家的开局申请.--服务器必须做。简单服务器就不做了。
+					if(data_cmd == 0x31) {// The opening result is returned. Notify the player whether the start is
+											// successful. Due to the loss rate of serial data. Therefore, when sending
+											// 0x31 to the doll machine, it is better to start a timeout timer. If the
+											// start is not received, it will continue to be sent every 100ms.。
+						//todo-Mark the status of the doll machine as not idle. No longer accepting
+						// other players' opening applications.--The server must do it. Simple server will not do。
 						if(me.current_player != null && me.current_player.isClosed() == false) 
 						{
 							SimpleApp.cserver.OnGameStartOK(me.current_player);
 							me.recvCount ++;
 						}
-					}else if(data_cmd == 0x33) { //游戏结束。通知玩家和在房间里的所有人。游戏结果.
-						//todo 这里，如果玩家有抓到娃娃，你服务器端还要处理的。比如中奖的娃娃ID，玩家ID之类的做中奖记录。
-						//然后通知后台客服发货什么的。。。这个简单版的服务器就没有做。我们怕功能太复杂了，你们会理不清楚核心逻辑
+					}else if(data_cmd == 0x33) { // game over. Notify the player and everyone in the room. Game result.
+						//todo Here, if the player has caught the doll, you have to deal with it on the server side. For example, the winning doll ID, the player ID and the like do the winning record.
+						// Then notify the back-end customer service what to ship. . . This simple version of the server is not done. We are afraid that the function is too complicated, you will not know the core logic.
 						if (all_machines.size() <= 0)
 							return ;
 						
@@ -432,8 +437,8 @@ public class WawaServer {
 						
 						me.recvCount --;
 						me.current_player = null;
-					}else if (data_cmd == 0x35) {//心跳消息
-						me.recvCount --;//心跳不计入测试丢包统计
+					}else if (data_cmd == 0x35) {// Heartbeat message
+						me.recvCount --;// Heartbeat does not count into test packet loss statistics
 						String strMAC = new String(total_data, 8, 12);
 						long t1=System.currentTimeMillis();
 						
@@ -441,18 +446,18 @@ public class WawaServer {
 						long now_tw = System.currentTimeMillis();
 						MachineInfo tmp = all_machines.get(strMAC);
 						if (tmp == null) {
-							//首次心跳。得到数据库里面检查是否存在此娃娃机。存在则加入房间列表。
-							//todo你还应该从数据库里面读取娃娃机名称（即房间名称）之类的娃娃机配置信息。玩家要看的
-							//我这里不考虑其他情况。所以上来都是加入列表。你可不能这么做。。
+							//First heartbeat. Get the database to check if this doll machine exists. Exist, join the room list。
+							//You should also read the doll machine configuration information such as the doll machine name (ie the room name) from the database. What the player wants to see
+							//I don't think about other situations here. So come up to join the list. You can't do this。。
 							me.last_heartbeattime = now_tw;
 							me.mac = strMAC;
 							
-							//功能添加 首次登陆
+							// Feature addition
 							synchronized (all_machines) {
 								all_machines.put(strMAC, me);
 							}
 						} else {
-							me.last_heartbeattime = now_tw;//取出并更新上次心跳计时
+							me.last_heartbeattime = now_tw;// Remove and update the last heartbeat timing
 						}
 
 						//heart beat reply back
