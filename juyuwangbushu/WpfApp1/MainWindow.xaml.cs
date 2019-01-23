@@ -42,7 +42,7 @@ namespace WpfApp1
 
         bool isFinding = false;
 
-        //进行更新UI的委托
+        //Make a request to update the UI
         public delegate void UpdateUIDelegate(AndroidClient ableAndroidClient);
 
         public delegate void UpdateFindButton(bool isable);
@@ -69,11 +69,11 @@ namespace WpfApp1
         {
             if (isFinding)
                 return;
-            findButton.Content = "正在查找...";
+            findButton.Content = "Looking up...";
             findButton.IsEnabled = false;
             isFinding = true;
 
-            LogLabel.Text = "正在查找...\n";
+            LogLabel.Text = "Looking up...\n";
 
             killAllFindThread();
             resetClinet();
@@ -123,9 +123,9 @@ namespace WpfApp1
         private void UpdateFindButtonUI(bool isable)
         {
             findButton.IsEnabled = true;
-            findButton.Content = "查找设备";
+            findButton.Content = "Find device";
             isFinding = false;
-            LogLabel.Text = LogLabel.Text + "查找结束\n";
+            LogLabel.Text = LogLabel.Text + "End of search\n";
             
         }
 
@@ -177,7 +177,7 @@ namespace WpfApp1
                 try
                 {
                     System.Net.Sockets.TcpClient c = new System.Net.Sockets.TcpClient();
-                    c.Connect("www.baidu.com", 80);
+                    c.Connect("www.google.co.th", 80);
                     string ip = ((System.Net.IPEndPoint)c.Client.LocalEndPoint).Address.ToString();
                     c.Close();
                     return ip;
@@ -268,7 +268,7 @@ namespace WpfApp1
                 // new process对象  
                 System.Diagnostics.Process p = new System.Diagnostics.Process();
 
-                // 设置属性  
+                // Setting properties 
                 p.StartInfo.UseShellExecute = false;
                 p.StartInfo.CreateNoWindow = true;
                 p.StartInfo.FileName = "tryToConnect.bat";
@@ -282,7 +282,7 @@ namespace WpfApp1
 
                 // 开启process线程  
                 p.Start();
-                // 获取返回结果，这个是最简单的字符串的形式返回，现在试试以其他的形式去读取返回值的结果。  
+                // Get the returned result, this is the simplest form of string return, now try to read the result of the return value in other forms. 
 
                 string str = string.Empty;
                 StreamReader readerout = p.StandardOutput;
@@ -291,7 +291,7 @@ namespace WpfApp1
                 {
                     line = readerout.ReadLine();
                     //Console.WriteLine(line);  
-                    //将得到的结果写入到excle中  
+                    //Write the result to excle  
                     //excut_result.Add(line);
                     Console.WriteLine(serverIp + "  " + line);
                     if (line.Contains("connected"))
@@ -300,7 +300,7 @@ namespace WpfApp1
                         {
                             UpdateUIDelegate updateUIDelegate = new UpdateUIDelegate(UpdateUI);
 
-                            //通过调用委托
+                            //By calling the delegate
                             this.listView.Dispatcher.Invoke(updateUIDelegate, new AndroidClient(serverIp));
 
                         }
@@ -489,7 +489,7 @@ namespace WpfApp1
 
             // 开启process线程  
             p.Start();
-            // 获取返回结果，这个是最简单的字符串的形式返回，现在试试以其他的形式去读取返回值的结果。  
+            // Get the returned result, this is the simplest form of string return, now try to read the result of the return value in other forms.  
 
             string str = string.Empty;
             StreamReader readerout = p.StandardOutput;
@@ -500,7 +500,7 @@ namespace WpfApp1
             {
                 line = readerout.ReadLine();
                 //Console.WriteLine(line);  
-                //将得到的结果写入到excle中  
+                //Write the result to excle  
                 //excut_result.Add(line);
                 Console.WriteLine(serverIp + "  " + line);
                 str = serverIp + " : " + line + "\n";
