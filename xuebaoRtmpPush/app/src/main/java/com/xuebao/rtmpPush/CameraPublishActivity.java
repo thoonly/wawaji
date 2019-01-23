@@ -222,9 +222,9 @@ public class CameraPublishActivity extends FragmentActivity {
     private int curBackCameraIndex = -1;
 
     public static ComPort mComPort;
-    public static SockAPP sendThread;//应用服务器
-    public SockConfig confiThread;//配置服务器
-    MyTCServer lis_server = null;//本机监听端口。接受局域网配置工具命令
+    public static SockAPP sendThread;//application server
+    public SockConfig confiThread;//Configuration server
+    MyTCServer lis_server = null;//The local listening port. Accept LAN configuration tool commands
 
     private WifiManager wifiManager;
     WifiAutoConnectManager wifiauto;
@@ -1481,8 +1481,8 @@ public class CameraPublishActivity extends FragmentActivity {
 
             if (is_applyok == false) {
                 RestoreConfigAndUpdateVideoUI();
-                Toast.makeText(getApplicationContext(), "无效的视频配置，已恢复原状!", Toast.LENGTH_SHORT).show();
-                if(CameraPublishActivity.DEBUG)  Log.e(TAG, "无效的视频配置，已恢复原状");
+                Toast.makeText(getApplicationContext(), "Invalid video configuration, reverted to its original state!", Toast.LENGTH_SHORT).show();
+                if(CameraPublishActivity.DEBUG)  Log.e(TAG, "Invalid video configuration, reverted to its original state");
                 //	return false;
             }
         }
@@ -1550,7 +1550,7 @@ public class CameraPublishActivity extends FragmentActivity {
         // 0x42 设置ip的通知。其中0x42不透传--20180529已废弃 0x3c 0x42 。因为部分的rom不支持3c
 
         //打印调试输出
-        String str_com_data ="串口数据" + ComPort.bytes2HexString(com_data, len);
+        String str_com_data ="Serial data" + ComPort.bytes2HexString(com_data, len);
         Message msgLog = Message.obtain();
         msgLog.what = CameraPublishActivity.MessageType.msgOutputLog.ordinal();
         msgLog.obj = str_com_data;
@@ -1596,13 +1596,13 @@ public class CameraPublishActivity extends FragmentActivity {
                     {
                         Message me1 = Message.obtain();//心跳消息
                         me1.what = MessageType.msgOutputLog.ordinal();
-                        me1.obj = "发出心跳.";
+                        me1.obj = "Heartbeat.";
                         if (mHandler != null) mHandler.sendMessage(me1);
                     }
                     else {
                             Message me1 = Message.obtain();//心跳消息
                             me1.what = MessageType.msgOutputLog.ordinal();
-                            me1.obj = "收到串口心跳，但发送不成功.";
+                            me1.obj = "Received a serial heartbeat, but the transmission was unsuccessful.";
                             if (mHandler != null) mHandler.sendMessage(me1);
                         }
                 }
@@ -1620,7 +1620,7 @@ public class CameraPublishActivity extends FragmentActivity {
     public void ThreadHandleSockData(byte[] sock_data, int len)
     {
         //打印调试输出
-        String str_com_data ="网络数据" + ComPort.bytes2HexString(sock_data, len);
+        String str_com_data ="Network data" + ComPort.bytes2HexString(sock_data, len);
         Message msgLog = Message.obtain();
         msgLog.what = CameraPublishActivity.MessageType.msgOutputLog.ordinal();
         msgLog.obj = str_com_data;
@@ -1656,7 +1656,7 @@ public class CameraPublishActivity extends FragmentActivity {
             {
                 Message msgLog1 = Message.obtain();
                 msgLog1.what = CameraPublishActivity.MessageType.msgOutputLog.ordinal();
-                msgLog1.obj = "检测到设备需要重启。不转发开局指令";
+                msgLog1.obj = "It is detected that the device needs to be restarted. Do not forward the opening order";
                 if (mHandler != null) mHandler.sendMessage(msgLog1);
             }
             else
@@ -1787,7 +1787,7 @@ public class CameraPublishActivity extends FragmentActivity {
 
                         //连接应用服务器
                         if (sendThread == null) {
-                            outputInfo("时间就绪之-开始连接应用服务器.", false);
+                            outputInfo("Ready - start connecting to the application server.", false);
                             sendThread = new SockAPP();//空循环等待 没事
                             sendThread.StartWokring(mHandler, VideoConfig.instance.destHost, VideoConfig.instance.GetAppPort());
                         }
@@ -1806,7 +1806,7 @@ public class CameraPublishActivity extends FragmentActivity {
                     if (year < 2018) {
                         isTimeReady = false;
                         timeWaitCount--;
-                        Toast.makeText(getApplicationContext(), "时间未就绪。等待.否则预览会卡死.剩余" + timeWaitCount + "次后强行推流", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Not ready. Wait. Otherwise the preview will be stuck. Remaining" + timeWaitCount + "Forced flow after the second", Toast.LENGTH_SHORT).show();
                         if (timeWaitCount <= 0) {
                             isTimeReady = true;
                             //延迟2秒后开始预览
@@ -1822,7 +1822,7 @@ public class CameraPublishActivity extends FragmentActivity {
                 }
                 break;
                 case msgOnTimeOK: {
-                    outputInfo("时间已就绪.", false);
+                    outputInfo("Ready.", false);
 
                     //调用摄像头 初始化预览
                     Camera front_camera = GetCameraObj(FRONT);
